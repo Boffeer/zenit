@@ -7,93 +7,48 @@ use Carbon_Fields\Container;
 use Carbon_Fields\Field;
 
 // Default options page
-$basic_options_container = Container::make('theme_options', 'i3d_theme_settings',  'Content edit')
-	->add_tab('Links', array(
-		Field::make('text', 'icons_price', 'Icons Price')
+$basic_options_container = Container::make('theme_options', 'i3d_theme_settings',  'Глобальные настройки')
+	->add_tab('Телефоны и адреса', array(
+		Field::make('text', 'global_phone', 'Телефон')
 			->set_width(30),
-		Field::make('text', 'currency_price', 'Currency')
+		Field::make('text', 'global_email', 'Email')
 			->set_width(30),
-		Field::make('textarea', 'product_thumbs_captions', 'Product Thumbs Captions'),
-		Field::make('textarea', 'lead_emails', 'Lead emails')
+		Field::make('textarea', 'global_address', 'Адрес')
+			->set_width(30),
+		Field::make('textarea', 'global_address_ym', 'Яндекс карты')
+			->set_width(30),
+		Field::make('textarea', 'leads_email', 'Почты для заявок')
+			->set_width(30),
 	))
-	->add_tab('Icons Bullets', array(
-		Field::make('rich_text', 'premium_icons_bullets', 'Premium Icons Bullets')
-			->set_rows(8),
-		Field::make('rich_text', 'free_icons_bullets', 'Free Icons Bullets')
-			->set_rows(4),
+	->add_tab('Блок скачать каталог', array(
+		Field::make('file', 'catalog_pdf', 'PDF Файл')
+			->set_value_type('url'),
+		Field::make('radio', 'catalog_active', 'Отображать или скрывать')
+			->add_options(array(
+				true => __('Блок отображается'),
+				false => __('Блок скрыт'),
+			)),
 	))
-	->add_tab('Popular Tags', array(
-		Field::make('association', 'popular_tags')
-			->set_types(array(
-				array(
-					'type' => 'term',
-					'taxonomy' => 'post_tag',
-				),
+	->add_tab('Блок консультация', array(
+		Field::make('radio', 'consult_active', 'Отображать или скрывать')
+			->add_options(array(
+				true => __('Блок отображается'),
+				false => __('Блок скрыт'),
 			))
 	))
-	->add_tab('Trending Icons', array(
-		Field::make('association', 'trending_icons')
-			->set_types(array(
-				array(
-					'type' => 'post',
-					'post_type' => 'icon',
-				),
-			))
-	))
-	->add_tab('Trending Packs', array(
-		Field::make('association', 'trending_packs')
-			->set_types(array(
-				array(
-					'type' => 'post',
-					'post_type' => 'packs',
-				),
+	->add_tab('Блок перейти в каталог', array(
+		Field::make('radio', 'go_catalog_active', 'Отображать или скрывать')
+			->add_options(array(
+				true => __('Блок отображается'),
+				false => __('Блок скрыт'),
 			))
 	));
 
-Container::make('post_meta', 'page_info', 'Page Info')
+Container::make('post_meta', 'page_info', 'Информация о странице')
 	->where('post_type', '=', 'page')
 	->add_tab('Page settings', array(
-		Field::make('text', 'page_title', 'Page title'),
-		Field::make('textarea', 'page_description', 'Page description'),
-		Field::make('image', 'og_image', 'og:image')
+		Field::make('text', 'page_title', 'Заголовок'),
+		Field::make('textarea', 'page_description', 'Описание'),
+		Field::make('image', 'og_image', 'Картинка для соцсетей')
 			->set_value_type('url'),
-	));
-
-Container::make('post_meta', 'product_info', 'Product Info')
-	->where('post_type', '=', 'icon')
-	->add_tab('Product settings', array(
-		Field::make('text', 'product_id', 'Product id')
-			->set_width(50),
-		Field::make('radio', 'pay_status', 'Pay Status')
-			->add_options(array(
-				'free' => 'Free',
-				'premium' =>  'Premium',
-			)),
-		Field::make('media_gallery', 'thumbs', 'Thumbnails')
-			->set_conditional_logic(array(
-				'relation' => 'AND',
-				array(
-					'field' => 'pay_status',
-					'compare' => '=',
-					'value' => 'premium',
-				)
-			))
-			->set_type(array('image')),
-	));
-
-
-Container::make('post_meta', 'pack_info', 'Pack Info')
-	->where('post_type', '=', 'packs')
-	->add_tab('Pack settings', array(
-		Field::make('text', 'product_id', 'Product id')
-			->set_width(50),
-		Field::make('text', 'pack_price', 'Pack Price')
-			->set_width(50),
-		Field::make('association', 'pack_icons')
-			->set_types(array(
-				array(
-					'type' => 'post',
-					'post_type' => 'icon',
-				),
-			))
 	));
