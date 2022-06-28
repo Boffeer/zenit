@@ -1,0 +1,106 @@
+.content-page {
+    h1 {
+        margin-bottom: 24px;
+    }
+    @media (max-width: $mobile-l) {
+        h1 {
+            margin-bottom: 6px;
+        }
+    }
+    &__catalog {
+        display: flex;
+        gap: 30px;
+        @media (max-width: $laptop-m) {
+            flex-direction: column-reverse;
+            .block_catalog {
+                display: none;
+            }
+        }
+    }
+    &__aside {
+        max-width: 308px;
+        padding-bottom: 50px;
+        @media (max-width: $laptop-m) {
+            max-width: 100%;
+            padding-bottom: 0;
+        }
+    }
+    &__wrapper {
+        width: 100%;
+    }
+}
+
+.content-page__container {
+    display: flex;
+    margin-bottom: 50px;
+    @media (max-width: 1150px) {
+        .form-page {
+            width: 100%
+        }
+    }
+    @media (max-width: $laptop-m) {
+        flex-direction: column;
+    }
+}
+
+.content-page__text {
+    margin-right: 143px;
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 30px;
+        margin-bottom: 34px;
+        a {
+            color: $accent;
+            position: relative;
+            &:after {
+                content: '';
+                position: absolute;
+                bottom: 2px;
+                width: 100%;
+                border-bottom: 1px solid $accent;
+                left: 0
+            }
+        }
+    }
+    h3 {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 20px;
+        margin-bottom: 6px;
+    }
+    @media (max-width:$laptop-m) {
+        margin-right: 0
+    }
+    @media (max-width: $mobile-l) {
+        margin-right: 0;
+        p {
+            font-size: 12px;
+            line-height: 16px;
+            margin-bottom: 7px;
+            a {
+                &:after {
+                    bottom: 1px
+                }
+            }
+        }
+        h3 {
+            font-size: 12px;
+            line-height: 16px;
+            margin-bottom: 1px;
+        }
+    }
+}
+
+.content-page__text__btn {
+    line-height: 20px;
+    margin-top: 7px;
+    display: block;
+    padding: 9px 21px 11px 20px;
+    @media (max-width: $mobile-l) {
+        font-size: 16px;
+        line-height: 22px;
+        padding: 5px 25px;
+        margin-top: 21px
+    }
+}
