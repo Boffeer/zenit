@@ -143,7 +143,7 @@ add_action('widgets_init', 'zenit_widgets_init');
  */
 function zenit_scripts()
 {
-	wp_enqueue_style('zenit-style', get_stylesheet_directory_uri() . 'css/style.css', array(), _S_VERSION);
+	wp_enqueue_style('zenit-style', get_stylesheet_directory_uri() . '/css/style.css', array(), _S_VERSION);
 
 	wp_enqueue_script('zenit-lightgallery', get_stylesheet_directory_uri() . '/js/libs/lightGallary/lightgallery.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('zenit-swiper-scripts', get_stylesheet_directory_uri() . '/js/libs/swiper-bundle.min.js', array(), _S_VERSION, true);
