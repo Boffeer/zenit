@@ -72,6 +72,7 @@ if (!function_exists('zenit_get_contacts')) :
 	function zenit_get_contacts()
 	{
 		$page_contacts_id = 24;
+		$page_about_id = 20;
 		return array(
 			'phone' => carbon_get_theme_option('global_phone'),
 			'phone_href' => 'tel:' . preg_replace('/\D/i', '', carbon_get_theme_option('global_phone')),
@@ -83,6 +84,8 @@ if (!function_exists('zenit_get_contacts')) :
 			'email' => carbon_get_theme_option('global_email'),
 			'contacts_url' => get_permalink($page_contacts_id),
 			'contacts_title' => get_the_title($page_contacts_id),
+			'about_url' => get_permalink($page_about_id),
+			'about_title' => get_the_title($page_about_id),
 		);
 	}
 endif;

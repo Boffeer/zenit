@@ -54,10 +54,8 @@ $contacts = zenit_get_contacts();
 			</div>
 			<iframe class="contacts-page__map" src="<?php echo carbon_get_theme_option('global_address_ym'); ?>"></iframe>
 		</div>
-		<?php if (carbon_get_theme_option('go_catalog_active') && $page_id != 3) : ?>
-			<a class="contacts-page__btn btn">Перейти в каталог</a>
-		<?php endif; ?>
 	</div>
+	<?php echo zenit_catalog_button(); ?>
 </section>
 
 <?php get_footer(); ?>

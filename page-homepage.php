@@ -18,6 +18,7 @@ get_header();
 
 <?php
 $page_id = get_the_id();
+$contacts = zenit_get_contacts();
 ?>
 
 <main class="index-main">
@@ -175,7 +176,7 @@ $page_id = get_the_id();
 				северными, дальневосточным и сибирским регионами нашей страны.
 				Поэтому в данные регионы уже налажена доставка.
 			</p>
-			<a href="" class="btn section_map__link">О компании</a>
+			<a href="<?php echo $contacts['about_url']; ?>" class="btn section_map__link"><?php echo $contacts['about_title']; ?></a>
 		</div>
 		<div class="section_maps__maps">
 			<div class="section_maps__maps-mouse"></div>
