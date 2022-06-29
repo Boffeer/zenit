@@ -11,11 +11,15 @@ $basic_options_container = Container::make('theme_options', 'i3d_theme_settings'
 	->add_tab('Телефоны и адреса', array(
 		Field::make('text', 'global_phone', 'Телефон')
 			->set_width(30),
+		Field::make('text', 'global_fax', 'Телефон/Факс')
+			->set_width(30),
 		Field::make('text', 'global_email', 'Email')
 			->set_width(30),
 		Field::make('text', 'global_instagram', 'Instagram')
 			->set_width(30),
 		Field::make('textarea', 'global_address', 'Адрес')
+			->set_width(30),
+		Field::make('textarea', 'global_address_full', 'Адрес полный')
 			->set_width(30),
 		Field::make('textarea', 'global_address_ym', 'Яндекс карты')
 			->set_width(30),

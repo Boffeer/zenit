@@ -75,8 +75,11 @@ if (!function_exists('zenit_get_contacts')) :
 		return array(
 			'phone' => carbon_get_theme_option('global_phone'),
 			'phone_href' => 'tel:' . preg_replace('/\D/i', '', carbon_get_theme_option('global_phone')),
+			'fax' => carbon_get_theme_option('global_fax'),
+			'fax_href' => 'tel:' . preg_replace('/\D/i', '', carbon_get_theme_option('global_fax')),
 			'instagram' => carbon_get_theme_option('global_instagram'),
 			'address' => carbon_get_theme_option('global_address'),
+			'address_full' => carbon_get_theme_option('global_address_full'),
 			'email' => carbon_get_theme_option('global_email'),
 			'contacts_url' => get_permalink($page_contacts_id),
 			'contacts_title' => get_the_title($page_contacts_id),
