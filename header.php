@@ -79,6 +79,12 @@
 					</div>
 					<div class="header-all__bottom fl-align">
 						<ul class="header-all__bottom-menu fl-align">
+							<?php
+							$header_menu_id = 3;
+							$header_menu_items =  wp_get_nav_menu_items($header_menu_id, [
+								'output_key'  => 'menu_order',
+							]);
+							?>
 							<li class="header-all__bottom__list">
 								<a href="" class="header-all__bottom__list-link">Главная</a>
 							</li>

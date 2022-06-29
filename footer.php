@@ -18,6 +18,12 @@
 		<div class="container fl-align">
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png" alt="" class="footer_logo" />
 			<ul class="footer_menu fl-align">
+				<?php
+				$footer_menu_id = 4;
+				$footer_menu_items =  wp_get_nav_menu_items($footer_menu_id, [
+					'output_key'  => 'menu_order',
+				]);
+				?>
 				<li class="footer_menu__line">
 					<a href="">Главная</a>
 				</li>
