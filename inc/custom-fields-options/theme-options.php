@@ -37,16 +37,71 @@ $basic_options_container = Container::make('theme_options', 'i3d_theme_settings'
 			))
 	))
 	->add_tab('Блок перейти в каталог', array(
-		Field::make('radio', 'go_catalog_active', 'Отображать или скрывать')
+		Field::make('radio', 'go_catalog_active', __('Отображать или скрывать'))
 			->add_options(array(
 				true => __('Блок отображается'),
 				false => __('Блок скрыт'),
 			))
 	));
 
+Container::make('post_meta', 'page_info', __('Информация о странице'))
+	->where('post_id', '=', '7')
+	->add_tab(
+		'Слайдер',
+		array(
+			Field::make('complex', 'banner_top', 'Слайдер')
+				->add_fields(
+					array(
+						Field::make('image', 'img', 'Слайд')
+							->set_value_type('url'),
+						Field::make('textarea', 'text', 'Тексты')
+					)
+				)
+		)
+	)
+	->add_tab(
+		'Преимущества',
+		array(
+			Field::make('complex', 'features', 'Преимущества')
+				->add_fields(
+					array(
+						Field::make('image', 'icon', 'Иконка')
+							->set_value_type('url'),
+						Field::make('textarea', 'texts', 'Тексты')
+							->set_help_text('Строки отделять через enter. Строки идут последовательно как в компьютерной версии сайта.'),
+					)
+				)
+		)
+	)
+	->add_tab(
+		'Каталог',
+		array(
+			Field::make('association', 'main_catalog', __('Каталог'))
+				->set_types(array(
+					array(
+						'type'      => 'post',
+						'post_type' => 'post',
+					)
+				))
+		)
+	)
+	->add_tab(
+		'Форма обратной связи',
+		array(
+			Field::make('textarea', 'form_text', 'Тексты формы')
+				->set_help_text('Строки отделять через enter. Строки идут последовательно как в компьютерной версии сайта. 2 энетера, чтобы сделать разрыв строки'),
+		)
+	)
+	->add_tab(
+		'О компании',
+		array(
+			Field::make('rich_text', 'about_text', __('Тексты формы')),
+		)
+	);
+
 Container::make('post_meta', 'page_info', 'Информация о странице')
 	->where('post_type', '=', 'page')
-	->add_tab('Page settings', array(
+	->add_tab('Настройки страницы', array(
 		Field::make('text', 'page_title', 'Заголовок'),
 		Field::make('textarea', 'page_description', 'Описание'),
 		Field::make('image', 'og_image', 'Картинка для соцсетей')

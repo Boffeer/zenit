@@ -1,32 +1,32 @@
 <?php
 
-if (!function_exists('i3d_explode_tinymc')) :
+if (!function_exists('boffeer_explode_tinymc')) :
 	/**
 	 * All Enter transform to new bullet
 	 * All Shift + Enter transform to <br> of bullet
 	 */
-	function i3d_explode_tinymc($input)
+	function boffeer_explode_tinymc($input)
 	{
 		$shift_enter = explode("\r\n\r\n", $input);
 		return array_map('nl2br', $shift_enter);
 	}
 endif;
-if (!function_exists('i3d_explode_textarea')) :
+if (!function_exists('boffeer_explode_textarea')) :
 	/**
 	 * Transform textarea saved as string to array where every new line is a item of the array
 	 */
-	function i3d_explode_textarea($input)
+	function boffeer_explode_textarea($input)
 	{
 		return explode("\n", str_replace("\r", "", $input));
 	}
 endif;
 
-if (!function_exists('i3d_get_word_form')) :
+if (!function_exists('boffeer_get_word_form')) :
 	/**
 	 * Returns a correct form of the word
 	 * 1 Item, but 5 Items
 	 */
-	function i3d_get_word_form($count, $words)
+	function boffeer_get_word_form($count, $words)
 	{
 		if ($count > 1) {
 			return "{$count} {$words['1']}";
@@ -37,11 +37,11 @@ if (!function_exists('i3d_get_word_form')) :
 endif;
 
 
-if (!function_exists('i3d_setup_crb_posts')) :
+if (!function_exists('boffeer_setup_crb_posts')) :
 	/**
 	 * Prints crb assosiation posts
 	 */
-	function i3d_the_crb_posts($posts, $count = -1)
+	function boffeer_the_crb_posts($posts, $count = -1)
 	{
 		$include_ids = array();
 		$post_type = null;
