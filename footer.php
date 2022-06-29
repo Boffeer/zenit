@@ -12,6 +12,9 @@
 
 ?>
 
+<?php
+$contacts = zenit_get_contacts();
+?>
 
 <footer class="footer">
 	<div class="footer_top_menu">
@@ -43,8 +46,8 @@
 					<a href="">Контакты</a>
 				</li>
 			</ul>
-			<a href="tel:8(800)775-63-84" class="footer_phone">8 (800) 775-63-84</a>
-			<button class="footer_btn btn">Заказать звонок</button>
+			<a href="<?php echo $contacts['phone_href'] ?>" class="footer_phone"><?php echo $contacts['phone'] ?></a>
+			<button data-modal-open="consultation" class="footer_btn btn">Заказать звонок</button>
 			<div class="footer_scroll_top">
 				<svg>
 					<use href="<?php echo get_stylesheet_directory_uri(); ?>/img/sprite.svg#arr-top"></use>
@@ -57,10 +60,10 @@
 			<p class="footer_bottom_line__copyright">
 				© ООО «Зенит» Все права защищены 2022
 			</p>
-			<a href="" class="footer_bottom_line__policy">
+			<a href="<?php echo get_privacy_policy_url(); ?>" class="footer_bottom_line__policy">
 				Политика обработки персональных данных
 			</a>
-			<a href="" class="footer_bottom_line__study">
+			<a href="https://creatwim.ru/" class="footer_bottom_line__study">
 				Дизайн и разработка сайта: <strong>ГК «ТВИМ»</strong>
 			</a>
 		</div>

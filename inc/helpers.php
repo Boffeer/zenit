@@ -67,3 +67,16 @@ if (!function_exists('boffeer_setup_crb_posts')) :
 		wp_reset_postdata();
 	}
 endif;
+
+if (!function_exists('zenit_get_contacts')) :
+	function zenit_get_contacts()
+	{
+		return array(
+			'phone' => carbon_get_theme_option('global_phone'),
+			'phone_href' => 'tel:' . preg_replace('/\D/i', '', carbon_get_theme_option('global_phone')),
+			'instagram' => carbon_get_theme_option('global_instagram'),
+			'address' => carbon_get_theme_option('global_address'),
+			'email' => carbon_get_theme_option('global_email'),
+		);
+	}
+endif;

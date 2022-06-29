@@ -13,6 +13,8 @@ $basic_options_container = Container::make('theme_options', 'i3d_theme_settings'
 			->set_width(30),
 		Field::make('text', 'global_email', 'Email')
 			->set_width(30),
+		Field::make('text', 'global_instagram', 'Instagram')
+			->set_width(30),
 		Field::make('textarea', 'global_address', 'Адрес')
 			->set_width(30),
 		Field::make('textarea', 'global_address_ym', 'Яндекс карты')
