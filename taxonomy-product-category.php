@@ -7,13 +7,9 @@
 		<h1><?php echo get_queried_object()->label ?></h1>
 		<button class="btn catalog-nav-btn">Открыть каталог</button>
 
-		<?php
-		$categories = zenit_get_categories();
-		?>
-
 		<div class="content-page__catalog">
 			<div class="content-page__aside">
-				<?php echo $categories; ?>
+				<?php echo zenit_get_categories(); ?>
 				<?php echo zenit_sidebar(array(
 					'callback'
 				)); ?>
