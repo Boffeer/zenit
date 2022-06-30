@@ -12,7 +12,7 @@ get_header();
 ?>
 
 
-<main>
+<!-- <main>
 	<div class="container">
 		<div class="breadcrumbs">
 			<ul class="breadcrumbs-list">
@@ -26,7 +26,9 @@ get_header();
 			</ul>
 		</div>
 	</div>
-</main>
+</main> -->
+
+<?php zenit_breadcrumbs(); ?>
 
 <section class="detail-news-page">
 	<div class="container">

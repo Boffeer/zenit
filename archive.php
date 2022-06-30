@@ -15,8 +15,7 @@ get_header();
 
 <section class="<?php echo get_queried_object()->name . '-page'; ?>">
 	<div class="container">
-		<h1><?php echo get_queried_object()->label
-				?></h1>
+		<h1><?php echo get_queried_object()->label ?></h1>
 		<div class="news-page__box">
 			<div class="section_news__container">
 				<?php if (have_posts()) : ?>
