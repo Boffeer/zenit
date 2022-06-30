@@ -148,6 +148,7 @@ function zenit_scripts()
 	wp_enqueue_script('zenit-lightgallery', get_stylesheet_directory_uri() . '/js/libs/lightGallary/lightgallery.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('zenit-swiper-scripts', get_stylesheet_directory_uri() . '/js/libs/swiper-bundle.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('zenit-mask', get_stylesheet_directory_uri() . '/js/libs/mask.js', array(), _S_VERSION, true);
+	wp_enqueue_script('zenit-share', get_stylesheet_directory_uri() . '/js/share.js', array(), _S_VERSION, true);
 	wp_enqueue_script('zenit-main-scripts', get_stylesheet_directory_uri() . '/js/main.js', array(), _S_VERSION, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -195,3 +196,8 @@ function ast_register_custom_fields()
  * Helpers
  */
 require get_template_directory() . '/inc/helpers.php';
+
+/**
+ * Custom posts
+ */
+require get_template_directory() . '/inc/custom-posts.php';

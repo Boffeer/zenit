@@ -113,3 +113,11 @@ Container::make('post_meta', 'page_info', 'Информация о страни�
 		Field::make('image', 'og_image', 'Картинка для соцсетей')
 			->set_value_type('url'),
 	));
+
+Container::make('post_meta', 'page_info', 'О новости')
+	->where('post_type', '=', 'news')
+	->add_fields(
+		array(
+			Field::make('media_gallery', 'news_slider', 'Слайдер новости')
+		)
+	);

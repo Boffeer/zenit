@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Template part for displaying posts
  *
@@ -9,55 +10,30 @@
 
 ?>
 
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
-		if ( is_singular() ) :
-			the_title( '<h1 class="entry-title">', '</h1>' );
-		else :
-			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-		endif;
+<?php if ($post->post_type == 'partners') : ?>
+	<div class="partners-page__element">
+		<div class="partners-page__element-picture">
+			<img src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full')[0])) ?>" alt="<?php the_title(); ?>" />
+		</div>
 
-		if ( 'post' === get_post_type() ) :
-			?>
-			<div class="entry-meta">
-				<?php
-				zenit_posted_on();
-				zenit_posted_by();
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
-
-	<?php zenit_post_thumbnail(); ?>
-
-	<div class="entry-content">
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'zenit' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
-
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'zenit' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
-
-	<footer class="entry-footer">
-		<?php zenit_entry_footer(); ?>
-	</footer><!-- .entry-footer -->
-</article><!-- #post-<?php the_ID(); ?> -->
+		<div class="partners-page__element-text">
+			<h2 class="partners-page__element-header">
+				<?php the_title(); ?>
+			</h2>
+			<p class="partners-page__element-info">
+				Оборудование для нарезки продукта на ломтики и порции, кубики
+				и полоски, слайсеров.
+			</p>
+		</div>
+	</div>
+<?php else : ?>
+	<div id="post-<?php the_ID(); ?>" class="section_news__element">
+		<img class="section_news__element-picture" src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full')[0])) ?>" alt="<?php echo $post->post_title; ?>" />
+		<div class="section_news__element-box">
+			<h3 class="section_news__element-header">
+				<?php echo $post->post_title; ?>
+			</h3>
+			<a class="section_news__element-link" href="<?php echo esc_url(the_permalink()); ?>">Подробнее</a>
+		</div>
+	</div>
+<?php endif; ?>

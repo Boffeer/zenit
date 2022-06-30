@@ -89,3 +89,9 @@ if (!function_exists('zenit_get_contacts')) :
 		);
 	}
 endif;
+
+function the_truncated_post($symbol_amount = 100)
+{
+	$filtered = strip_tags(preg_replace('@<style[^>]*?>.*?</style>@si', '', preg_replace('@<script[^>]*?>.*?</script>@si', '', apply_filters('the_content', get_the_content()))));
+	return substr($filtered, 0, strrpos(substr($filtered, 0, $symbol_amount), ' ')) . '...';
+}
