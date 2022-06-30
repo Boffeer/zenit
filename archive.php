@@ -52,11 +52,9 @@ get_header();
 				endif; ?>
 			</div>
 		</div>
-		<?php if (zenit_get_pagination()) : ?>
-			<div class="pagination fl-align">
-				<?php echo zenit_get_pagination();  ?>
-			</div>
-		<?php endif; ?>
+
+		<?php echo zenit_get_pagination();  ?>
+
 		<?php if (get_queried_object()->name != 'news') {
 			echo zenit_catalog_button();
 		} ?>

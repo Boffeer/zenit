@@ -62,22 +62,6 @@ function zenit_custom_pagination($nav)
 		'<span class="pagination__list-element">',
 	];
 
-	/*
-			<button class="pagination-prev">
-			</button>
-			<ul class="pagination__list fl-align">
-				<li class="pagination__list-element _active">1</li>
-				<li class="">2</li>
-				<li class="pagination__list-element">3</li>
-				<li class="pagination__list-element">...</li>
-				<li class="pagination__list-element">10</li>
-			</ul>
-			<button class="pagination-next">
-				<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 21L11 11L1 1" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-				</svg>
-			</button>
-			*/
 	$nav  = str_replace($search, $replace, $nav);
 	return $nav;
 }
@@ -97,5 +81,13 @@ function zenit_get_pagination()
 
 
 	);
-	return zenit_custom_pagination(paginate_links($args));
+	$pagination = zenit_custom_pagination(paginate_links($args));
+	ob_start();
+?>
+	<div class="pagination fl-align">
+		<?php print($pagination); ?>
+	</div>
+<?php
+	return ob_get_clean();
+	// endif;
 }

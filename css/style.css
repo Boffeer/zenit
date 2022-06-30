@@ -4096,9 +4096,6 @@ header.mobile-grid .header_mobile {
 .partners-page h1 {
   margin-bottom: 35px;
 }
-.partners-page .pagination {
-  display: none;
-}
 @media (max-width: 425px) {
   .partners-page {
     margin-bottom: 32px;
