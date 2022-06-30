@@ -201,3 +201,8 @@ require get_template_directory() . '/inc/helpers.php';
  * Custom posts
  */
 require get_template_directory() . '/inc/custom-posts.php';
+
+/**
+ * Custom search
+ */
+require_once get_template_directory() . '/inc/custom-search.php';

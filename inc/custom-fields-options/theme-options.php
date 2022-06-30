@@ -146,3 +146,19 @@ Container::make('post_meta', 'page_info', 'Вакансия')
 				)),
 		)
 	);
+
+
+Container::make('post_meta', 'product_info', 'О товаре')
+	->where('post_type', '=', 'products')
+	->add_fields(array(
+		Field::make('textarea', 'stats', 'Тексты'),
+		Field::make('media_gallery', 'thumbs', 'Фото'),
+		Field::make('complex', 'files', 'Файлы')
+			->add_fields(
+				array(
+					Field::make('text', 'filename', 'Файл'),
+					Field::make('file', 'file', 'Файл')
+						->set_value_type('url'),
+				)
+			)
+	));

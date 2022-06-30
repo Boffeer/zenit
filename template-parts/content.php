@@ -27,9 +27,7 @@
 		</div>
 	</div>
 <?php elseif ($post->post_type == 'jobs') : ?>
-
 	<?php $location	= carbon_get_post_meta(get_the_id(), 'location'); ?>
-
 	<div class="vakansion-page_accordion">
 		<div class="vakansion-page_accordion__header fl-align">
 			<p class="vakansion-page_accordion__header-city">
@@ -73,6 +71,16 @@
 			<a href="#jobs-form" class="btn vakansion-click" data-job="<?php the_title(); ?>">
 				Откликнуться на вакансию
 			</a>
+		</div>
+	</div>
+<?php elseif ($post->post_type == 'products') : ?>
+	<div class="catalog-item">
+		<div class="catalog-item__wrapper">
+			<img class="catalog-item__image" src="<?php echo esc_url((wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'full')[0])) ?>" alt="<?php the_title(); ?>" />
+			<p class="catalog-item__title">
+				<?php the_title(); ?>
+			</p>
+			<a href="<?php the_permalink($post->ID) ?>" class="catalog-item__btn btn fl-align">Подробнее</a>
 		</div>
 	</div>
 <?php else : ?>

@@ -44,8 +44,8 @@ $contacts = zenit_get_contacts();
 			</div>
 			<iframe class="contacts-page__map" src="<?php echo carbon_get_theme_option('global_address_ym'); ?>"></iframe>
 		</div>
+		<?php echo zenit_catalog_button(); ?>
 	</div>
-	<?php echo zenit_catalog_button(); ?>
 </section>
 
 <?php get_footer(); ?>

@@ -1,5 +1,20 @@
 <?php
 
+if (!function_exists('boffeer_explode_double_nl')) :
+	/**
+	 * All Enter transform to new bullet
+	 * All Shift + Enter transform to <br> of bullet
+	 */
+	function boffeer_explode_double_nl($input)
+	{
+		$shift_enter = explode("\r\n\r\n", $input);
+		foreach ($shift_enter as $key => $row) {
+			$shift_enter[$key] = explode("\n", str_replace("\r", "", $row));
+		}
+		return $shift_enter;
+	}
+endif;
+
 if (!function_exists('boffeer_explode_tinymc')) :
 	/**
 	 * All Enter transform to new bullet

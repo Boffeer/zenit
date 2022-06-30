@@ -190,24 +190,34 @@ function i3d_search_form($form)
 	return $form;
 }
 
-function zenit_catalog_button()
+function zenit_catalog_button($attrs = array())
 {
+	if (!isset($attrs['classlist'])) {
+		$attrs['classlist'] = '';
+	}
+	if (!isset($attrs['text'])) {
+		$attrs['text'] = 'Перейти в каталог';
+	}
+	if (!isset($attrs['href'])) {
+		$attrs['href'] = get_post_type_archive_link('products');
+	}
+
 	ob_start();
 ?>
 	<?php if (carbon_get_theme_option('go_catalog_active') && $page_id != 3) : ?>
-		<a class="contacts-page__btn btn">Перейти в каталог</a>
+		<a href="<?php echo $attrs['href'] ?>" class="contacts-page__btn btn <?php echo $attrs['classlist']; ?>"><?php echo $attrs['text']; ?></a>
 	<?php endif; ?>
 <?php
 	return ob_get_clean();
 }
 
 
-function zenit_sidebar()
+function zenit_sidebar($hide_blocks)
 {
 	$contacts = zenit_get_contacts();
 	ob_start(); ?>
 	<div class="content-page__block">
-		<?php if (carbon_get_theme_option('catalog_active')) : ?>
+		<?php if (carbon_get_theme_option('catalog_active') && !in_array('catalog', $hide_blocks)) : ?>
 			<div class="block_catalog">
 				<h2 class="block_catalog__title">
 					Каталог<br />
@@ -218,7 +228,7 @@ function zenit_sidebar()
 					PDF</a>
 			</div>
 		<?php endif; ?>
-		<?php if (carbon_get_theme_option('consult_active')) : ?>
+		<?php if (carbon_get_theme_option('consult_active') && !in_array('consult', $hide_blocks)) : ?>
 			<div class="consultant_block">
 				<h2 class="consultant_block__title">Нужна консультация?</h2>
 				<div class="consultant_block__info">
@@ -232,6 +242,19 @@ function zenit_sidebar()
 					<?php echo nl2br($contacts['address']); ?>
 				</div>
 				<a href="<?php echo $contacts['contacts_url']; ?>" class="consultant_block__link"><?php echo $contacts['contacts_title']; ?></a>
+			</div>
+		<?php endif; ?>
+		<?php if (!in_array('callback', $hide_blocks)) : ?>
+			<div class="block_choose">
+				<p class="block_choose__title">Затрудняетесь с выбором?</p>
+				<form action="#" method="POST" class="block_choose__form">
+					<div class="form-elem">
+						<input class="form-elem__area _required" type="tel" name="user_phone" placeholder="Номер телефона*" required />
+					</div>
+					<button class="btn block_choose__submit" type="submit">
+						Жду звонка
+					</button>
+				</form>
 			</div>
 		<?php endif; ?>
 	</div>
@@ -289,4 +312,56 @@ function zenit_share_buttons($id)
 	</div>
 <?php
 	return ob_get_clean();
+}
+
+
+function zenit_get_categories()
+{
+	$args = array(
+		'taxonomy'     => 'product-category',
+		'type'         => 'post',
+		// 'child_of'     => 0,
+		'parent'       => 0,
+		'orderby'      => 'name',
+		'order'        => 'ASC',
+		'hide_empty'   => 1,
+		'hierarchical' => 1,
+		'number'       => 0,
+		'pad_counts'   => false,
+		// полный список параметров смотрите в описании функции http://wp-kama.ru/function/get_terms
+	);
+	$categories = get_terms($args);
+
+	ob_start();
+?>
+	<nav class="catalog-nav">
+		<ul>
+			<?php foreach ($categories as $category) : ?>
+				<?php
+				$args['parent'] = $category->term_id;
+				$children = get_terms($args);
+				?>
+				<li id="category-<?php echo $category->term_id; ?>">
+					<a href="#">
+						<?php echo $category->name; ?>
+					</a>
+					<?php if (!empty($children)) : ?>
+						<ul>
+							<?php foreach ($children as $child) : ?>
+								<li id="category-<?php echo $child->term_id; ?>">
+									<a href="<?php //echo get_category_link($child->term_id);
+														?>">
+										<?php echo $child->name; ?>
+									</a>
+								</li>
+							<?php endforeach; ?>
+						</ul>
+					<?php endif; ?>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</nav>
+<?php
+	$categories = ob_get_clean();
+	return $categories;
 }
