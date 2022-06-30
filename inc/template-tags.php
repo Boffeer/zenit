@@ -199,7 +199,7 @@ function zenit_catalog_button($attrs = array())
 		$attrs['text'] = 'Перейти в каталог';
 	}
 	if (!isset($attrs['href'])) {
-		$attrs['href'] = get_post_type_archive_link('products');
+		$attrs['href'] = get_post_type_archive_link('product-category');
 	}
 
 	ob_start();

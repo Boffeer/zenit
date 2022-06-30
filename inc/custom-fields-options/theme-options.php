@@ -169,3 +169,11 @@ Container::make('post_meta', 'review_info', 'Отзыв')
 		Field::make('textarea', 'subtitle', 'Подзаголовок'),
 		Field::make('textarea', 'review', 'Отзыв'),
 	));
+
+Container::make('post_meta', 'certificates_info', 'Сертификаты')
+	->where('post_type', '=', 'certificates')
+	->add_fields(array(
+		Field::make('image', 'photo', 'Фото')
+			->set_value_type('url'),
+		Field::make('textarea', 'cert_desc', 'Описание'),
+	));
