@@ -1,68 +1,82 @@
 .pagination {
-    justify-content: center;
-    margin: 55px 0;
-    button {
-        &:hover {
-            path {
-                stroke: $accent;
-            }
-        }
-        svg {
-            width: 10px
-        }
+  justify-content: center;
+  margin: 55px 0;
+  @media (max-width: $mobile-l) {
+    margin: 16px 0 32px 0;
+  }
+}
+.pagination-prev {
+  margin-right: 50px;
+  @media (max-width: $mobile-l) {
+    margin-right: 20px;
+  }
+}
+.pagination-next {
+  margin-left: 50px;
+  @media (max-width: $mobile-l) {
+    margin-left: 20px;
+  }
+}
+.pagination-prev,
+.pagination-next {
+  &:hover {
+    path {
+      stroke: $accent;
     }
-    @media (max-width:$mobile-l) {
-        margin: 16px 0 32px 0;
-        button {
-            display: flex;
-            align-items: center;
-            svg {
-                width: 8px
-            }
-        }
+  }
+  svg {
+    width: 10px;
+  }
+  @media (max-width: $mobile-l) {
+    display: flex;
+    align-items: center;
+    svg {
+      width: 8px;
     }
+  }
 }
 
+.pagination__list-element {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 25px;
+  border: 1px solid $main;
+  border-radius: $radius;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  &._active {
+    background: $accent;
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  &:hover {
+    background: $accent;
+    color: #fff;
+    border: 1px solid transparent;
+  }
+  &:not(:last-child) {
+    margin-right: 30px;
+  }
+
+  @media (max-width: $mobile-l) {
+    width: 18px;
+    font-weight: 400;
+    height: 18px;
+    font-size: 12px;
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+}
 .pagination__list {
-    margin: 0 50px;
-    li {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 25px;
-        border: 1px solid $main;
-        border-radius: $radius;
-        width: 30px;
-        height: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        &._active {
-            background: $accent;
-            color: #fff;
-            border: 1px solid transparent;
-        }
-        &:hover {
-            background: $accent;
-            color: #fff;
-            border: 1px solid transparent;
-        }
-        &:not(:last-child) {
-            margin-right: 30px
-        }
-    }
-    @media (max-width:$mobile-l) {
-        margin: 0 20px;
-        li {
-            width: 18px;
-            font-weight: 400;
-            height: 18px;
-            font-size: 12px;
-            &:not(:last-child) {
-                margin-right: 10px
-            }
-        }
-    }
+  margin: 0 50px;
+  @media (max-width: $mobile-l) {
+    margin: 0 20px;
+  }
 }
 
 // .browser-Safari {
