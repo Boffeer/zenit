@@ -162,3 +162,10 @@ Container::make('post_meta', 'product_info', 'О товаре')
 				)
 			)
 	));
+
+Container::make('post_meta', 'review_info', 'Отзыв')
+	->where('post_type', '=', 'reviews')
+	->add_fields(array(
+		Field::make('textarea', 'subtitle', 'Подзаголовок'),
+		Field::make('textarea', 'review', 'Отзыв'),
+	));
