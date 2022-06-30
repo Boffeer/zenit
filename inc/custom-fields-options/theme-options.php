@@ -121,3 +121,28 @@ Container::make('post_meta', 'page_info', 'О новости')
 			Field::make('media_gallery', 'news_slider', 'Слайдер новости')
 		)
 	);
+
+Container::make('post_meta', 'page_info', 'Вакансия')
+	->where('post_type', '=', 'jobs')
+	->add_fields(
+		array(
+			Field::make('text', 'location', 'Где')
+				->set_default_value('г. Воронеж'),
+			Field::make('complex', 'desc', 'Описание')
+				->add_fields(array(
+					Field::make('text', 'title', 'Заголовок'),
+					Field::make('textarea', 'desc', 'Тексты')
+				))
+				->set_default_value(array(
+					array(
+						'title' => 'Требования к соискателю',
+					),
+					array(
+						'title' => 'Основнвые обязонности',
+					),
+					array(
+						'title' => 'Условия работы',
+					),
+				)),
+		)
+	);
