@@ -4,7 +4,7 @@
 
 <section class="content-page">
 	<div class="container catalog-page">
-		<h1><?php echo get_queried_object()->label ?></h1>
+		<h1>Каталог</h1>
 		<button class="btn catalog-nav-btn">Открыть каталог</button>
 
 		<div class="content-page__catalog">

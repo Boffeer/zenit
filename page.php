@@ -16,7 +16,7 @@ $contacts = zenit_get_contacts();
 
 				<?php echo zenit_catalog_button(); ?>
 			</div>
-			<?php echo zenit_sidebar(); ?>
+			<?php echo zenit_sidebar(array('callback')); ?>
 		</div>
 	</div>
 </section>

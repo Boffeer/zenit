@@ -44,7 +44,7 @@
 				<input type="tel" class="validation-input" data-placeholder="Номер телефона *" data-mask="+7 (___) ___-__-__" placeholder="Номер телефона *" />
 				<input type="text" class="validation-input" data-placeholder="Email *" placeholder="Email *" />
 				<input type="text" class="validation-input" data-placeholder="Город проживания *" placeholder="Город проживания *" />
-				<textarea cols="30" rows="10" placeholder="Краткая информация о Вашей фирме"></textarea>
+				<textarea cols="30" rows="10" placeholder="Краткая информация о сосискателе"></textarea>
 				<input type="submit" value="Оставить заявку" data-submit />
 			</form>
 		</div>

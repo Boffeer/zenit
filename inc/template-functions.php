@@ -94,16 +94,32 @@ function zenit_get_pagination()
 function zenit_breadcrumbs()
 {
 	ob_start();
+	$breadcrumbs = '';
+	if (function_exists('yoast_breadcrumb')) {
+		$breadcrumbs = yoast_breadcrumb('<ul class="breadcrumbs-list">', '</ul>', false);
+		$search  = [
+			'<span><a href',
+			'</a></span>',
+			'<span><span>',
+			'<span class="breadcrumb_last" aria-current="page"',
+			'</span></ul>',
+			'<span>',
+		];
+		$replace = [
+			'<li class="breadcrumbs-list__element"><a  href',
+			' </a></li>',
+			'',
+			'<li class="breadcrumbs-list__element"',
+			'</ul>',
+			'</span>',
+		];
+		$breadcrumbs  = str_replace($search, $replace, $breadcrumbs);
+	}
 ?>
 	<main>
 		<div class="container">
 			<div class="breadcrumbs">
-				<ul class="breadcrumbs-list">
-					<li class="breadcrumbs-list__element">
-						<a href="">Главная</a>
-					</li>
-					<li class="breadcrumbs-list__element">Новости</li>
-				</ul>
+				<?php echo $breadcrumbs; ?>
 			</div>
 		</div>
 	</main>

@@ -199,7 +199,7 @@ function zenit_catalog_button($attrs = array())
 		$attrs['text'] = 'Перейти в каталог';
 	}
 	if (!isset($attrs['href'])) {
-		$attrs['href'] = get_post_type_archive_link('product-category');
+		$attrs['href'] = get_the_permalink(77);
 	}
 
 	ob_start();
@@ -212,7 +212,7 @@ function zenit_catalog_button($attrs = array())
 }
 
 
-function zenit_sidebar($hide_blocks)
+function zenit_sidebar($hide_blocks = array())
 {
 	$contacts = zenit_get_contacts();
 	ob_start(); ?>
@@ -349,7 +349,7 @@ function zenit_get_categories()
 						<ul>
 							<?php foreach ($children as $child) : ?>
 								<li id="category-<?php echo $child->term_id; ?>">
-									<a href="<?php //echo get_category_link($child->term_id);
+									<a href="<?php echo get_category_link($child->term_id);
 														?>">
 										<?php echo $child->name; ?>
 									</a>

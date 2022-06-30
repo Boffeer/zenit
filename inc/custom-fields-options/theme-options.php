@@ -105,15 +105,6 @@ Container::make('post_meta', 'page_info', __('Информация о стран
 		)
 	);
 
-Container::make('post_meta', 'page_info', 'Информация о странице')
-	->where('post_type', '=', 'page')
-	->add_tab('Настройки страницы', array(
-		Field::make('text', 'page_title', 'Заголовок'),
-		Field::make('textarea', 'page_description', 'Описание'),
-		Field::make('image', 'og_image', 'Картинка для соцсетей')
-			->set_value_type('url'),
-	));
-
 Container::make('post_meta', 'page_info', 'О новости')
 	->where('post_type', '=', 'news')
 	->add_fields(
