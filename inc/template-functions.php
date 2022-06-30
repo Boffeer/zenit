@@ -90,3 +90,23 @@ function zenit_get_pagination()
 <?php
 	return ob_get_clean();
 }
+
+function zenit_breadcrumbs()
+{
+	ob_start();
+?>
+	<main>
+		<div class="container">
+			<div class="breadcrumbs">
+				<ul class="breadcrumbs-list">
+					<li class="breadcrumbs-list__element">
+						<a href="">Главная</a>
+					</li>
+					<li class="breadcrumbs-list__element">Новости</li>
+				</ul>
+			</div>
+		</div>
+	</main>
+<?php
+	return ob_get_clean();
+}

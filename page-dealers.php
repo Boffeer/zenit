@@ -1,17 +1,6 @@
 <?php get_header(); ?>
 
-<main>
-	<div class="container">
-		<div class="breadcrumbs">
-			<ul class="breadcrumbs-list">
-				<li class="breadcrumbs-list__element">
-					<a href="">Главная</a>
-				</li>
-				<li class="breadcrumbs-list__element">Дилерам</li>
-			</ul>
-		</div>
-	</div>
-</main>
+<?php echo zenit_breadcrumbs(); ?>
 
 <section class="content-page dilers-page">
 	<div class="container">
