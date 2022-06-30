@@ -74,58 +74,30 @@ $contacts = zenit_get_contacts();
 	<div class="container">
 		<h2 class="line">Каталог</h2>
 		<div class="section_catalog__container">
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Оборудование для убоя скота</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Измельчение и приготовление фарша</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Формирующие системы
-				</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Оборудование для убоя скота</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Измельчение и приготовление фарша</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Формирующие системы
-				</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Оборудование для убоя скота</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Измельчение и приготовление фарша</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Формирующие системы
-				</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Оборудование для убоя скота</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Измельчение и приготовление фарша</a>
-			</div>
-			<div class="section_catalog__element">
-				<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/catalog/catalog-1.png" alt="" />
-				<a class="section_catalog__element-header" href="">Формирующие системы
-				</a>
-			</div>
+			<?php
+			$home_catalog = carbon_get_post_meta(get_the_id(), 'main_catalog');
+			$include_products = array();
+			foreach ($home_catalog as $product) {
+				$include_products[] = $product['id'];
+			}
+			$home_catalog = get_terms(array(
+				'include' => $include_products,
+			));
+			?>
+			<?php foreach ($home_catalog as $category) : ?>
+				<?php
+				$thumb = '';
+				if (function_exists('z_taxonomy_image_url')) {
+					$thumb = z_taxonomy_image_url($category->term_id);
+				}
+				?>
+				<div class="section_catalog__element">
+					<img src="<?php echo $thumb ?>" alt="<?php echo $cateogry->name; ?>" />
+					<a class="section_catalog__element-header" href="<?php echo get_term_link($category->term_id, $category->taxonomy); ?>">
+						<?php echo $category->name; ?>
+					</a>
+				</div>
+			<?php endforeach; ?>
 		</div>
 	</div>
 </section>

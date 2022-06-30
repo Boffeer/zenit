@@ -85,8 +85,8 @@ Container::make('post_meta', 'page_info', __('Информация о стран
 			Field::make('association', 'main_catalog', __('Каталог'))
 				->set_types(array(
 					array(
-						'type'      => 'post',
-						'post_type' => 'post',
+						'type'      => 'term',
+						'taxonomy' => 'product-category',
 					)
 				))
 		)
