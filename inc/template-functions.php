@@ -89,5 +89,4 @@ function zenit_get_pagination()
 	</div>
 <?php
 	return ob_get_clean();
-	// endif;
 }
