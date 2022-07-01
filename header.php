@@ -102,9 +102,10 @@ $contacts = zenit_get_contacts();
 							foreach ($header_menu_items as $menu) {
 								if ($menu->menu_item_parent == 0) {
 									$menu_levels[] = array(
-										// 'item' => $menu,
+										'item' => $menu,
 										'name' => $menu->title,
-										'id' => $menu->object_id,
+										'id' => $menu->ID,
+										// 'id' => $menu->object_id,
 									);
 								}
 							}
@@ -112,9 +113,10 @@ $contacts = zenit_get_contacts();
 							foreach ($menu_levels as $key_1 => $top_menu) {
 								foreach ($header_menu_items as $key_2 => $m2) {
 									if ($top_menu['id'] == $m2->menu_item_parent) {
-										$menu_levels[$key_1]['children'][] = array(
-											// 'item' => $m2,
+										$menu_levels[$key_1]['children'][$key_2][] = array(
+											'item' => $m2,
 											'name' => $m2->title,
+											// 'id' => $m2->object_id,
 											'id' => $m2->object_id,
 											'parent' => $m2->menu_item_parent,
 										);
@@ -179,6 +181,55 @@ $contacts = zenit_get_contacts();
 							// echo '</pre>';
 							*/
 							?>
+							<?php foreach ($menu_levels as $menu) : ?>
+								<?php if (!isset($menu['children'])) : ?>
+									<li class="header-all__bottom__list">
+										<a href="<?php echo $menu['item']->url; ?>" class="header-all__bottom__list-link"><?php echo $menu['item']->title; ?></a>
+									</li>
+								<?php else : ?>
+									<li class="header-all__bottom__list dropdown fl-align">
+										<a href="<?php echo $menu['item']->url; ?>" class="header-all__bottom__list-link"><?php echo $menu['item']->title; ?></a>
+										<ul class="header-all__bottom__list-children">
+											<?php echo '<pre>';
+											// var_dump($menu['children']);
+											echo '</pre>'; ?>
+											<?php foreach ($menu['children'] as $children) : ?>
+												<?php foreach ($children as $child) : ?>
+													<p><?php echo '<pre>';
+															// var_dump($child);
+															echo '</pre>'; ?></p>
+													<li class="header-all__bottom__list-children-li">
+														<a href="<?php echo $child['item']->url; ?>"><?php echo $child['item']->title; ?></a>
+													</li>
+												<?php endforeach; ?>
+											<?php endforeach; ?>
+											<!-- <li class="header-all__bottom__list-children-li dropdown">
+												<a href="">Как оформить заказ
+													<svg width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+														<path d="M5.5 9L0 0L11 9.08524e-07L5.5 9Z" fill="#222222" />
+													</svg>
+												</a>
+												<ul class="header-all__bottom__list-children-submenu">
+													<li class="header-all__bottom__list-children-li-submenu">
+														<a href="">Возврат товара</a>
+													</li>
+													<li class="header-all__bottom__list-children-li-submenu">
+														<a href="">Гарантийное обслуживание</a>
+													</li>
+													<li class="header-all__bottom__list-children-li-submenu">
+														<a href="">Техническая поддержка</a>
+													</li>
+												</ul>
+											</li> -->
+										</ul>
+										<svg width="11" height="9" viewBox="0 0 11 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M5.5 9L0 0L11 9.08524e-07L5.5 9Z" fill="#222222" />
+										</svg>
+									</li>
+								<?php endif; ?>
+							<?php endforeach; ?>
+						</ul>
+						<!-- <ul class="header-all__bottom-menu fl-align">
 							<li class="header-all__bottom__list">
 								<a href="" class="header-all__bottom__list-link">Главная</a>
 							</li>
@@ -269,7 +320,7 @@ $contacts = zenit_get_contacts();
 							<li class="header-all__bottom__list">
 								<a href="" class="header-all__bottom__list-link">Контакты</a>
 							</li>
-						</ul>
+						</ul> -->
 						<?php echo get_search_form(); ?>
 					</div>
 				</div>
