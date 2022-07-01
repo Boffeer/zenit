@@ -86,10 +86,98 @@ $contacts = zenit_get_contacts();
 					<div class="header-all__bottom fl-align">
 						<ul class="header-all__bottom-menu fl-align">
 							<?php
-							$header_menu_id = 3;
+							$header_menu_id = 4;
 							$header_menu_items =  wp_get_nav_menu_items($header_menu_id, [
 								'output_key'  => 'menu_order',
+								'level' => 3,
+								'order'                  => 'ASC',
+								'orderby'                => 'menu_order',
+								'output'                 => ARRAY_A,
 							]);
+							echo '<pre>';
+							// var_dump($header_menu_items);
+							echo '</pre>';
+
+							$menu_levels = array();
+							foreach ($header_menu_items as $menu) {
+								if ($menu->menu_item_parent == 0) {
+									$menu_levels[] = array(
+										// 'item' => $menu,
+										'name' => $menu->title,
+										'id' => $menu->object_id,
+									);
+								}
+							}
+
+							foreach ($menu_levels as $key_1 => $top_menu) {
+								foreach ($header_menu_items as $key_2 => $m2) {
+									if ($top_menu['id'] == $m2->menu_item_parent) {
+										$menu_levels[$key_1]['children'][] = array(
+											// 'item' => $m2,
+											'name' => $m2->title,
+											'id' => $m2->object_id,
+											'parent' => $m2->menu_item_parent,
+										);
+									}
+								}
+							}
+
+							echo '<pre>';
+							// var_dump($menu_levels);
+							// var_dump($header_menu_items);
+							echo '</pre>';
+							/*
+							$header_menu = array();
+
+							$visual_menu = array();
+							foreach ($header_menu_items as $key => $item) {
+								if ($item->menu_item_parent == 0) {
+									$header_menu[] = array(
+										'id' => $item->ID,
+										'parent' => $item,
+									);
+									unset($header_menu_items[$key]);
+									$visual_menu[] = array(
+										'title' => $item->title . ' ' . $item->ID,
+									);
+								}
+							}
+
+							foreach ($header_menu as $key_1 => $menu) {
+								foreach ($header_menu_items as $key_2 => $m2) {
+									if ($menu['parent']->ID == $m2->menu_item_parent) {
+										// echo $menu['parent']->title . '-' . $menu['parent']->ID . '------' . $m2->title . '-' . $m2->menu_item_parent . '<br>';
+										$header_menu[$key_1]['children'][] = $m2;
+										$visual_menu[$key_1]['children'][] = $m2->title . ' ' . $m2->ID . '<' . $m2->menu_item_parent;
+									}
+								}
+								// echo '<br>';
+							}
+
+							foreach ($header_menu as $key_1 => $menu) {
+								if (!isset($menu['children'])) continue;
+								foreach ($menu['children'] as $key_2 => $m2) {
+									// echo '<pre>';
+									// var_dump($m2);
+									// echo '</pre>';
+									// echo $m2->ID . '<br>';
+
+
+									foreach ($header_menu_items as $key_3 => $m3) {
+										// echo $menu['children'][$key_2]->ID . '---' . $m3->menu_item_parent . '<br>';
+										// if ($menu['parent'])
+										// echo '<pre>';
+										// var_dump($m2);
+										// echo '</pre>';
+									}
+									echo '--<br>';
+								}
+								echo '<br>';
+							}
+							// echo '<pre>';
+							// var_dump($visual_menu);
+							// echo '</pre>';
+							*/
 							?>
 							<li class="header-all__bottom__list">
 								<a href="" class="header-all__bottom__list-link">Главная</a>
