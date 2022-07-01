@@ -12,23 +12,7 @@ get_header();
 ?>
 
 
-<!-- <main>
-	<div class="container">
-		<div class="breadcrumbs">
-			<ul class="breadcrumbs-list">
-				<li class="breadcrumbs-list__element">
-					<a href="">Главная</a>
-				</li>
-				<li class="breadcrumbs-list__element">
-					<a href="">Новости</a>
-				</li>
-				<li class="breadcrumbs-list__element">Екатеринбург ЭКСПО 2020</li>
-			</ul>
-		</div>
-	</div>
-</main> -->
-
-<?php zenit_breadcrumbs(); ?>
+<?php echo zenit_breadcrumbs(); ?>
 
 <section class="detail-news-page">
 	<div class="container">
@@ -68,30 +52,6 @@ get_header();
 		</div>
 </section>
 
-<main id="primary" class="site-main">
-
-	<?php
-	while (have_posts()) :
-		the_post();
-
-		get_template_part('template-parts/content', get_post_type());
-
-		the_post_navigation(
-			array(
-				'prev_text' => '<span class="nav-subtitle">' . esc_html__('Previous:', 'zenit') . '</span> <span class="nav-title">%title</span>',
-				'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'zenit') . '</span> <span class="nav-title">%title</span>',
-			)
-		);
-
-		// If comments are open or we have at least one comment, load up the comment template.
-		if (comments_open() || get_comments_number()) :
-			comments_template();
-		endif;
-
-	endwhile; // End of the loop.
-	?>
-
-</main><!-- #main -->
 
 <?php
 get_footer();

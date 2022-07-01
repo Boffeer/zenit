@@ -143,12 +143,13 @@ add_action('widgets_init', 'zenit_widgets_init');
  */
 function zenit_scripts()
 {
+	// wp_enqueue_style('likely', get_stylesheet_directory_uri() . '/css/likely.css', array(), _S_VERSION);
 	wp_enqueue_style('zenit-style', get_stylesheet_directory_uri() . '/css/style.css', array(), _S_VERSION);
 
 	wp_enqueue_script('zenit-lightgallery', get_stylesheet_directory_uri() . '/js/libs/lightGallary/lightgallery.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('zenit-swiper-scripts', get_stylesheet_directory_uri() . '/js/libs/swiper-bundle.min.js', array(), _S_VERSION, true);
 	wp_enqueue_script('zenit-mask', get_stylesheet_directory_uri() . '/js/libs/mask.js', array(), _S_VERSION, true);
-	wp_enqueue_script('zenit-share', get_stylesheet_directory_uri() . '/js/share.js', array(), _S_VERSION, true);
+	wp_enqueue_script('zenit-likely', get_stylesheet_directory_uri() . '/js/libs/likely.js', array(), _S_VERSION, true);
 	wp_enqueue_script('zenit-main-scripts', get_stylesheet_directory_uri() . '/js/main.js', array(), _S_VERSION, true);
 
 	if (is_singular() && comments_open() && get_option('thread_comments')) {
@@ -206,3 +207,8 @@ require get_template_directory() . '/inc/custom-posts.php';
  * Custom search
  */
 require_once get_template_directory() . '/inc/custom-search.php';
+
+/**
+ * Custom menu
+ */
+require_once get_template_directory() . '/inc/custom-menu.php';
