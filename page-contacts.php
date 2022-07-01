@@ -33,11 +33,13 @@ $contacts = zenit_get_contacts();
 			</div>
 			<div class="contacts-page__callback block_choose">
 				<p class="block_choose__title">Необходимо перезвонить?</p>
-				<form class="block_choose__form">
+				<form class="block_choose__form form js_form" action="<?php echo get_stylesheet_directory_uri(); ?>/mail.php">
+					<input type="text" hidden name="formname" value="Необходимо перезвонить" readonly>
+					<input type="text" hidden name="page" value="<?php the_permalink(); ?>" readonly>
 					<div class="form-elem">
-						<input class="form-elem__area _required" type="tel" placeholder="Номер телефона *" required />
+						<input class="form-elem__area validation-input _required" type="tel" name="user_phone" data-placeholder="Номер телефона *" placeholder="Номер телефона *" />
 					</div>
-					<button class="btn block_choose__submit" type="submit">
+					<button class="btn block_choose__submit" type="submit" data-submit>
 						Жду звонка
 					</button>
 				</form>

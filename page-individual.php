@@ -31,7 +31,9 @@
 					<li>Нажать кнопку «Отправить заявку»</li>
 				</ol>
 
-				<form action="#" method="POST" class="catalog-content__form">
+				<form action="<?php echo get_stylesheet_directory_uri(); ?>/mail.php" method="POST" class="catalog-content__form js_form">
+					<input type="text" hidden name="formname" value="Индивидуальный заказ" readonly>
+					<input type="text" hidden name="page" value="<?php the_permalink(); ?>" readonly>
 					<label class="catalog-content__file field-file">
 						<svg width="46" height="41" viewBox="0 0 46 41" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M1.4375 26.5254C1.81875 26.5254 2.18438 26.6768 2.45397 26.9464C2.72355 27.216 2.875 27.5816 2.875 27.9629V35.1504C2.875 35.9129 3.1779 36.6442 3.71707 37.1833C4.25624 37.7225 4.9875 38.0254 5.75 38.0254H40.25C41.0125 38.0254 41.7438 37.7225 42.2829 37.1833C42.8221 36.6442 43.125 35.9129 43.125 35.1504V27.9629C43.125 27.5816 43.2765 27.216 43.546 26.9464C43.8156 26.6768 44.1813 26.5254 44.5625 26.5254C44.9437 26.5254 45.3094 26.6768 45.579 26.9464C45.8485 27.216 46 27.5816 46 27.9629V35.1504C46 36.6754 45.3942 38.1379 44.3159 39.2163C43.2375 40.2946 41.775 40.9004 40.25 40.9004H5.75C4.22501 40.9004 2.76247 40.2946 1.68414 39.2163C0.605802 38.1379 0 36.6754 0 35.1504V27.9629C0 27.5816 0.15145 27.216 0.421034 26.9464C0.690618 26.6768 1.05625 26.5254 1.4375 26.5254Z" fill="#222222" fill-opacity="0.7" />
@@ -44,8 +46,8 @@
 					</label>
 
 					<div class="form-elem catalog-content__fields">
-						<input class="catalog-content__input form-elem__area" type="text" name="company" placeholder="Компания" />
-						<input class="catalog-content__input form-elem__area _required validation-input" type="tel" name="user_phone" placeholder="Номер телефона*" />
+						<input class="catalog-content__input form-elem__area" type="text" name="user_company" placeholder="Компания" />
+						<input class="catalog-content__input form-elem__area _required validation-input" type="tel" name="user_phone" placeholder="Номер телефона*" data-placeholder="Номер телефона*" />
 					</div>
 
 					<div class="catalog-content__submit">

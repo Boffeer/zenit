@@ -22,29 +22,16 @@ $contacts = zenit_get_contacts();
 			<img src="<?php echo get_stylesheet_directory_uri(); ?>/img/logo.png" alt="" class="footer_logo" />
 			<ul class="footer_menu fl-align">
 				<?php
-				$footer_menu_id = 4;
+				$footer_menu_id = 3;
 				$footer_menu_items =  wp_get_nav_menu_items($footer_menu_id, [
 					'output_key'  => 'menu_order',
 				]);
 				?>
-				<li class="footer_menu__line">
-					<a href="">Главная</a>
-				</li>
-				<li class="footer_menu__line">
-					<a href="">Каталог</a>
-				</li>
-				<li class="footer_menu__line">
-					<a href="">О компании</a>
-				</li>
-				<li class="footer_menu__line">
-					<a href="">Дилерам</a>
-				</li>
-				<li class="footer_menu__line">
-					<a href="">Техническая поддержка</a>
-				</li>
-				<li class="footer_menu__line">
-					<a href="">Контакты</a>
-				</li>
+				<?php foreach ($footer_menu_items as $item) : ?>
+					<li class="footer_menu__line">
+						<a href="<?php echo $item->url; ?>"><?php echo $item->title; ?></a>
+					</li>
+				<?php endforeach; ?>
 			</ul>
 			<a href="<?php echo $contacts['phone_href'] ?>" class="footer_phone"><?php echo $contacts['phone'] ?></a>
 			<button data-modal-open="consultation" class="footer_btn btn">Заказать звонок</button>
@@ -80,7 +67,9 @@ $contacts = zenit_get_contacts();
 				И наш менеджер свяжется с Вами<br />
 				в ближайшее время
 			</p>
-			<form action="#" method="POST" class="form modal__form" id="modal__form">
+			<form action="<?php echo get_stylesheet_directory_uri(); ?>/mail.php" method="POST" class="js_form form modal__form" id="modal__form">
+				<input type="text" hidden name="formname" readonly value="Заявка на звонок">
+				<input type="text" hidden name="page" readonly value="<?php the_permalink(); ?>">
 				<div class="form-elem">
 					<input class="form-elem__area validation-input" type="tel" id="user_phone" name="user_phone" placeholder="Номер телефона*" data-placeholder="Номер телефона*" />
 				</div>
@@ -88,7 +77,7 @@ $contacts = zenit_get_contacts();
 					Жду звонка
 				</button>
 				<span class="modal__attention">Нажимая на кнопку «Жду звонка» вы даете свое<br />
-					согласие на обработку <a href="">персональных данных</a></span>
+					согласие на обработку <a href="<?php echo get_privacy_policy_url(); ?>">персональных данных</a></span>
 			</form>
 			<button class="modal__close">
 				<span></span>
@@ -116,15 +105,17 @@ $contacts = zenit_get_contacts();
 	<div class="modal__body">
 		<div class="modal__content">
 			<h2 class="modal__title">Оставить отзыв</h2>
-			<form action="#" method="POST" class="form modal__form" id="modal__form-2">
+			<form action="<?php echo get_stylesheet_directory_uri(); ?>/mail.php" method="POST" class="form modal__form" id="modal__form-2">
+				<input type="text" hidden name="formname" readonly value="Оставить отзыв">
+				<input type="text" hidden name="page" readonly value="<?php the_permalink(); ?>">
 				<div class="form-elem">
-					<input class="form-elem__area validation-input" type="text" id="user_name" name="name" placeholder="Ваше имя*" data-placeholder="Ваше имя*" />
+					<input class="form-elem__area validation-input" type="text" id="user_name" name="user_name" placeholder="Ваше имя*" data-placeholder="Ваше имя*" />
 				</div>
 				<div class="form-elem">
 					<input class="form-elem__area validation-input" type="text" id="user_company" name="company" data-placeholder="Город и наименование организации*" placeholder="Город и наименование организации*" />
 				</div>
 				<div class="form-elem">
-					<textarea class="form-elem__area validation-input" id="user_message" name="message" maxlength="270" data-placeholder="Текст отзыва (не более 270 символов)" placeholder="Текст отзыва (не более 270 символов)"></textarea>
+					<textarea class="form-elem__area validation-input" id="user_message" name="user_message" maxlength="270" data-placeholder="Текст отзыва (не более 270 символов)" placeholder="Текст отзыва (не более 270 символов)"></textarea>
 				</div>
 				<button class="btn modal__submit" type="submit" data-submit>
 					Оставить отзыв

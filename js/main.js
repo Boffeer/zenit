@@ -89,11 +89,13 @@ function validationForm(event) {
       .querySelectorAll(".validation-input")
       .forEach((el) => {
         if (el.value.trim() === "") {
-          event.preventDefault();
+          // if (event == undefined) return;
+          // event.preventDefault();
           el.placeholder = "Необходимо заполнить";
           el.classList.add("_error");
         } else {
-          event.preventDefault(); // Временно
+          // if (event == undefined) return;
+          // event.preventDefault(); // Временно
           el.classList.remove("_error");
           el.placeholder = el.dataset.placeholder;
         }
@@ -102,9 +104,10 @@ function validationForm(event) {
 }
 
 window.addEventListener("submit", function (e) {
-  console.log(e.target);
+  // console.log(e.target);
   if (e.target.querySelector("[data-submit]")) {
     validationForm(e);
+    // sumbitForm();
   }
 });
 
@@ -118,45 +121,58 @@ catalogForm &&
 sumbitForm();
 
 function sumbitForm() {
-  const form = find(".modal__form");
+  // const form = find(".modal__form");
+  const forms = document.querySelectorAll(".js_form");
+  // console.log(form);
 
-  form.addEventListener("submit", async (e) => {
-    const modal = find(".modal._show");
-    const btnSend = form.querySelector("[type=submit]");
-    btnSend.classList.add("send-preloader");
+  forms.forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+      const modal = find(".modal._show");
+      const btnSend = form.querySelector("[type=submit]");
+      btnSend.classList.add("send-preloader");
 
-    e.preventDefault();
+      e.preventDefault();
 
-    let con = validationForm();
+      let con = validationForm(e);
+      if ([...form.querySelectorAll("._error")].length > 0) {
+        con = false;
+      } else {
+        con = true;
+      }
+      console.log("con", e.target, con);
 
-    if (con === true) {
-      const formData = new FormData();
-      const action = form.getAttribute("action");
+      if (con === true) {
+        const formData = new URLSearchParams(new FormData(form));
+        const action = form.getAttribute("action");
 
-      let response = await fetch(action, {
-        method: "POST",
-        body: formData,
-      });
+        let response = await fetch(action, {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+        });
 
-      // settimeout здесь для того, чтобы показать работу отправки формы. В дальнейшем это нужно убрать
-      setTimeout(() => {
+        // settimeout здесь для того, чтобы показать работу отправки формы. В дальнейшем это нужно убрать
+        // setTimeout(() => {
         if (response.ok) {
           console.log("Successful");
           form.reset();
 
-          modal.classList.remove("_show");
-          find("#send-done").classList.add("_show");
+          if (modal) modal.classList.remove("_show");
+          find("#thanks").classList.add("_show");
           btnSend.classList.remove("send-preloader");
         } else {
           console.log("Error");
           form.reset();
 
-          modal.classList.remove("_show");
-          find("#send-error").classList.add("_show");
+          if (modal) modal.classList.remove("_show");
+          // find("#send-error").classList.add("_show");
           btnSend.classList.remove("send-preloader");
         }
-      }, 2000);
-    }
+        // }, 2000);
+      }
+    });
   });
 }
 

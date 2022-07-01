@@ -39,12 +39,13 @@
 		</div>
 		<div class="form-page" id="jobs-form">
 			<h2 class="form-page__title">Отклик на вакансию</h2>
-			<form action="/" class="form-page__forms">
-				<input type="text" class="validation-input" data-placeholder="ФИО полностью *" placeholder="ФИО полностью *" />
-				<input type="tel" class="validation-input" data-placeholder="Номер телефона *" data-mask="+7 (___) ___-__-__" placeholder="Номер телефона *" />
-				<input type="text" class="validation-input" data-placeholder="Email *" placeholder="Email *" />
-				<input type="text" class="validation-input" data-placeholder="Город проживания *" placeholder="Город проживания *" />
-				<textarea cols="30" rows="10" placeholder="Краткая информация о сосискателе"></textarea>
+			<form action="<?php echo get_stylesheet_directory_uri(); ?>/mail.php" class="form-page__forms js_form form">
+				<input type="text" hidden name="formname" value="Отклик на вакансию" />
+				<input type="text" name="user_name" class="validation-input" data-placeholder="ФИО полностью *" placeholder="ФИО полностью *" />
+				<input type="tel" name="user_phone" class="validation-input" data-placeholder="Номер телефона *" data-mask="+7 (___) ___-__-__" placeholder="Номер телефона *" />
+				<input type="text" name="user_email" class="validation-input" data-placeholder="Email *" placeholder="Email *" />
+				<input type="text" name="user_city" class="validation-input" data-placeholder="Город проживания *" placeholder="Город проживания *" />
+				<textarea cols="30" name="user_message" rows="10" placeholder="Краткая информация о сосискателе"></textarea>
 				<input type="submit" value="Оставить заявку" data-submit />
 			</form>
 		</div>

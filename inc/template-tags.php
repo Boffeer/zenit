@@ -247,11 +247,13 @@ function zenit_sidebar($hide_blocks = array())
 		<?php if (!in_array('callback', $hide_blocks)) : ?>
 			<div class="block_choose">
 				<p class="block_choose__title">Затрудняетесь с выбором?</p>
-				<form action="#" method="POST" class="block_choose__form">
+				<form action="<?php echo get_stylesheet_directory_uri(); ?>/mail.php" method="POST" class="block_choose__form js_form form">
+					<input type="text" hidden name="formname" value="Затрудняется с выбором" readonly>
+					<input type="text" hidden name="page" value="<?php the_permalink(); ?>" readonly>
 					<div class="form-elem">
-						<input class="form-elem__area _required" type="tel" name="user_phone" placeholder="Номер телефона*" required />
+						<input class="form-elem__area validation-input _required" type="tel" name="user_phone" placeholder="Номер телефона*" data-placeholder="Номер телефона*" />
 					</div>
-					<button class="btn block_choose__submit" type="submit">
+					<button class="btn block_choose__submit" type="submit" data-submit>
 						Жду звонка
 					</button>
 				</form>
