@@ -142,7 +142,8 @@ Container::make('post_meta', 'page_info', 'Вакансия')
 Container::make('post_meta', 'product_info', 'О товаре')
 	->where('post_type', '=', 'products')
 	->add_fields(array(
-		Field::make('textarea', 'stats', 'Тексты'),
+		Field::make('textarea', 'stats', 'Характеристики')
+			->set_help_text('Таблица будет создаваться сама. Сгруппируйте значения так: Первый столбец enter Второй столбец, enter Третий столбец enter enter Первый столбец вторая строка enter Второй столбец вторая строка enter Третий столбец вторая строка enter enter'),
 		Field::make('media_gallery', 'thumbs', 'Фото'),
 		Field::make('complex', 'files', 'Файлы')
 			->add_fields(
