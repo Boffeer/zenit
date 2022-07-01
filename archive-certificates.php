@@ -39,25 +39,8 @@
 
 			endif; ?>
 		</div>
-		<div class="certificates-page__pagination pagination fl-align">
-			<button class="pagination-prev">
-				<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M11 21L1 11L11 1" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-				</svg>
-			</button>
-			<ul class="pagination__list fl-align">
-				<li class="pagination__list-element _active">1</li>
-				<li class="pagination__list-element">2</li>
-				<li class="pagination__list-element">3</li>
-				<li class="pagination__list-element">...</li>
-				<li class="pagination__list-element">10</li>
-			</ul>
-			<button class="pagination-next">
-				<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 21L11 11L1 1" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-				</svg>
-			</button>
-		</div>
+
+		<?php echo zenit_get_pagination(); ?>
 		<?php echo zenit_catalog_button(array(
 			'classlist' => 'certificates-page__btn',
 		)); ?>
