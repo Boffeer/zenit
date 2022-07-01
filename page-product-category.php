@@ -16,8 +16,13 @@
 			</div>
 
 			<?php
+			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			$args = array(
+				'page' => $paged,
+				'paged' => $paged,
+				// 'postsnumber' => 0,
 				'post_type' => 'products',
+				// 'posts_per_page' => 1,
 			);
 			$query = new WP_Query($args);
 			?>
@@ -38,7 +43,19 @@
 			</div>
 		</div>
 
-		<?php echo zenit_get_pagination();  ?>
+		<?php
+		$big = 999999999; // уникальное число
+		?>
+		<?php echo zenit_get_pagination(array(
+			// 'base'    => user_trailingslashit(wp_normalize_path(get_permalink(get_the_id()) . '/%#%/')),
+			'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+			'format' => '?paged=%#%',
+			'current' => max(1, get_query_var('paged')),
+			'total'   => $query->max_num_pages,
+		));
+
+		wp_reset_postdata();
+		?>
 
 	</div>
 </section>

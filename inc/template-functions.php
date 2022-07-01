@@ -66,21 +66,24 @@ function zenit_custom_pagination($nav)
 	return $nav;
 }
 
-function zenit_get_pagination()
+function zenit_get_pagination($args_2 = false)
 {
-	global $paged;
+	// global $paged;
 	// global $query;
-	$paged = max($paged, 1);
-	$per_page = 10;
-	$total = ceil($query->found_posts / $paged);
+	// $paged = max($paged, 1);
+	// $per_page = 10;
+	// $total = ceil($query->found_posts / $paged);
 	$args = array(
-		// 'total'        => 1,
-		// 'current'      => $paged,
 		'prev_text'    => '<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M11 21L1 11L11 1" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>',
 		'next_text'    => '<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg"> <path d="M1 21L11 11L1 1" stroke="#222222" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" /> </svg>',
-
-
 	);
+
+	if (!empty($args_2)) {
+		$args_2['prev_text'] = $args['prev_text'];
+		$args_2['next_text'] = $args['next_text'];
+		$args = $args_2;
+	}
+
 	$pagination = zenit_custom_pagination(paginate_links($args));
 	ob_start();
 ?>

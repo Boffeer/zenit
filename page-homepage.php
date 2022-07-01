@@ -110,7 +110,9 @@ $contacts = zenit_get_contacts();
 			<p class="section_form__text">
 				<?php echo $form_text[1]; ?>
 			</p>
-			<form class="section_form__form" action="/">
+			<form class="section_form__form js_form" action="<?php echo get_stylesheet_directory_uri(); ?>/mail.php">
+				<input type="text" name="formname" readonly value="<?php echo $form_text[0]; ?>" hidden>
+				<input type="text" name="page" readonly value="<?php echo the_permalink(); ?>" hidden>
 				<input type="text" class="section_form__input validation-input" placeholder="Ваше имя" data-placeholder="Ваше имя" />
 				<input type="tel" class="section_form__input validation-input" placeholder="Номер телефона*" data-mask="+7 (___) ___-__-__" data-placeholder="Номер телефона*" />
 				<input type="submit" class="section_form__submit" data-submit value="Отправить" />
@@ -252,33 +254,20 @@ $contacts = zenit_get_contacts();
 	<div class="container">
 		<h2 class="line">Новости</h2>
 		<div class="section_news__container">
-			<div class="section_news__element">
-				<img class="section_news__element-picture" src="<?php echo get_stylesheet_directory_uri(); ?>/img/new-block/image-1.jfif" alt="" />
-				<div class="section_news__element-box">
-					<h3 class="section_news__element-header">
-						Выставка FoodTech Krasnodar 2021
-					</h3>
-					<a class="section_news__element-link" href="">Читать далее</a>
-				</div>
-			</div>
-			<div class="section_news__element">
-				<img class="section_news__element-picture" src="<?php echo get_stylesheet_directory_uri(); ?>/img/new-block/image-1.jfif" alt="" />
-				<div class="section_news__element-box">
-					<h3 class="section_news__element-header">
-						Выставка FoodTech Krasnodar 2021
-					</h3>
-					<a class="section_news__element-link" href="">Читать далее</a>
-				</div>
-			</div>
-			<div class="section_news__element">
-				<img class="section_news__element-picture" src="<?php echo get_stylesheet_directory_uri(); ?>/img/new-block/image-1.jfif" alt="" />
-				<div class="section_news__element-box">
-					<h3 class="section_news__element-header">
-						Выставка Агропродмаш 2020
-					</h3>
-					<a class="section_news__element-link" href="">Читать далее</a>
-				</div>
-			</div>
+			<?php
+			$news = get_posts(array(
+				'numberposts' => 3,
+				'post_type' => 'news',
+				'orderby'     => 'date',
+				'order'       => 'DESC',
+				'supress_filter' => true,
+			));
+			?>
+			<?php foreach ($news as $post) : ?>
+				<?php setup_postdata($post); ?>
+				<?php get_template_part('template-parts/content', $post->post_type); ?>
+			<?php endforeach; ?>
+			<?php wp_reset_postdata($post) ?>
 		</div>
 	</div>
 </section>
